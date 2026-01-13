@@ -54,17 +54,43 @@ body {
 
 /* Loading Screen */
 #loadingscreen {
-    background:rgba(100,100,100,0.7);
+    background:rgba(0,0,0,0.85);
 	z-index:10;
+	display:flex;
+	align-items:center;
+	justify-content:center;
 }
 
 #loadingmessage {
-    margin-top:400px;
     text-align:center;
-    height:48px;
     color:white;
-    background:url(images/loader.gif) no-repeat center;
-    font:12px Arial;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.waiting-title {
+    font-size:42px;
+    color:#ffcc00;
+    text-shadow: 0 0 20px rgba(255,204,0,0.5), 2px 2px 0 #553300;
+    letter-spacing:4px;
+    margin-bottom:30px;
+}
+
+.waiting-status {
+    font-size:18px;
+    color:#aaaaaa;
+}
+
+.dots::after {
+    content:'';
+    animation: dots 1.5s steps(4, end) infinite;
+}
+
+@keyframes dots {
+    0% { content:''; }
+    25% { content:'.'; }
+    50% { content:'..'; }
+    75% { content:'...'; }
+    100% { content:''; }
 }
 
 /* Mission Briefing Screen */

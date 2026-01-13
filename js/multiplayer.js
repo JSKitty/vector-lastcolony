@@ -28,7 +28,7 @@ var multiplayer = {
         // Show waiting screen
         $('.gamelayer').hide();
         $('#loadingscreen').show();
-        $('#loadingmessage').html('Waiting for opponent...<br><small>Share this app in a chat to play with someone!</small>');
+        $('#loadingmessage').html('<div class="waiting-title">MULTIPLAYER</div><div class="waiting-status">Waiting for opponent<span class="dots"></span></div>');
     },
 
     onPeerJoin: function(isHost) {
@@ -43,7 +43,7 @@ var multiplayer = {
             // Guest: wait for host to send init_level
             multiplayer.color = "green";
             multiplayer.peerColor = "blue";
-            $('#loadingmessage').html('Connected! Waiting for host to start game...');
+            $('#loadingmessage').html('<div class="waiting-title">CONNECTED</div><div class="waiting-status">Starting game<span class="dots"></span></div>');
         }
     },
 
