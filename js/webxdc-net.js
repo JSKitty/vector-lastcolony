@@ -89,17 +89,15 @@ var webxdcNet = {
 
     handleMessage: function(data) {
         if (!data) return;
-
-        // Parse if needed, otherwise use as-is
-        var message = (typeof data === 'object' && !data.buffer) ? data : JSON.parse(typeof data === 'string' ? data : new TextDecoder().decode(data));
-
-        if (message.addr === this.selfAddr) return;
-
-        if (message.type === 'presence') {
-            this.handlePresence(message);
-        } else if (this.onMessage) {
-            this.onMessage(message);
-        }
+        try {
+            var message = (typeof data === 'object' && !data.buffer) ? data : JSON.parse(typeof data === 'string' ? data : new TextDecoder().decode(data));
+            if (message.addr === this.selfAddr) return;
+            if (message.type === 'presence') {
+                this.handlePresence(message);
+            } else if (this.onMessage) {
+                this.onMessage(message);
+            }
+        } catch (e) {}
     },
 
     handlePresence: function(message) {
