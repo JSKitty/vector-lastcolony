@@ -88,46 +88,29 @@ var webxdcNet = {
     },
 
     handleMessage: function(data) {
-        var message;
+        if (!data) return;
 
+        var message;
         try {
-            // Parse message (support both string and binary)
+            // String or binary -> parse JSON, object -> use directly
             if (typeof data === 'string') {
-                if (!data || data.length === 0) return;
                 message = JSON.parse(data);
-            } else if (data instanceof ArrayBuffer) {
-                var str = new TextDecoder().decode(data);
-                if (!str || str.length === 0) return;
-                message = JSON.parse(str);
-            } else if (data instanceof Uint8Array) {
-                var str = new TextDecoder().decode(data);
-                if (!str || str.length === 0) return;
-                message = JSON.parse(str);
-            } else if (typeof data === 'object' && data !== null) {
-                // Already an object
-                message = data;
+            } else if (data.buffer || data instanceof ArrayBuffer) {
+                message = JSON.parse(new TextDecoder().decode(data));
             } else {
-                console.warn('Unknown message format:', typeof data);
-                return;
+                message = data;
             }
         } catch (e) {
-            console.error('Failed to parse message:', e, data);
             return;
         }
 
         // Ignore our own messages
-        if (message.addr === this.selfAddr) {
-            return;
-        }
+        if (message.addr === this.selfAddr) return;
 
-        // Handle presence messages
+        // Route message
         if (message.type === 'presence') {
             this.handlePresence(message);
-            return;
-        }
-
-        // Forward other messages to handler
-        if (this.onMessage) {
+        } else if (this.onMessage) {
             this.onMessage(message);
         }
     },
