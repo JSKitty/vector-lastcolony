@@ -1,32 +1,49 @@
-# Last Colony
+# Last Colony WebXDC
 
-Last Colony is an RTS game with both a single player campaign mode as well as a multiplayer mode, created entirely in HTML5 and JavaScript.
+Last Colony as a WebXDC mini-app for [Vector](https://vectorapp.io) and other WebXDC-compatible messengers.
 
-[Try the Last Colony Demo](http://www.adityaravishankar.com/projects/games/lastcolony/)
+## About
 
-The single player campaign includes an economy with buildings, vehicles, aircraft along with an over arching storyline told using scripted events.
+Last Colony is an RTS game with a single player campaign mode, created entirely in HTML5 and JavaScript. Build bases, train units, harvest resources, and complete missions in a sci-fi setting.
 
-The two player multiplayer uses Node.js with the WebSocket API to allow real time gameplay.
+## Features
 
-## Multiplayer Server Setup
-1. Install [Node](http://nodejs.org/) and [npm](https://npmjs.org/‎)
-2. Install WebSocket-Node using command: `npm install websocket`
-3. Start server inside js folder using command: `node js/server.js`
+- **Campaign Mode** - Story-driven missions with scripted events
+- **Base Building** - Construct buildings and defenses
+- **Unit Control** - Vehicles, aircraft, and harvesters
+- **Resource Economy** - Harvest and manage resources
+- **Pathfinding AI** - Intelligent unit movement
 
-## Pro HTML5 Games
-If you are interested in learning how to recreate this game entirely from scratch, you can find a detailed walk through in the book [Pro HTML5 Games](http://www.adityaravishankar.com/pro-html5-games/).
+## Controls
 
-In the process of creating this game, we look at adding intelligent unit movement using pathfinding and steering, and combat using a combination of scripted events, and finite state machines.
+- **Left Click** - Select units/buildings
+- **Right Click** - Move/attack
+- **Drag** - Box select multiple units
 
-We then look at adding multiplayer, covering everything from the basics of WebSocket and Node.JS, to details such as compensating for network latency while keeping the player games synchronized.
+## Building
+
+```bash
+./build.sh
+```
+
+Outputs `lastcolony.xdc` (~3MB) ready for deployment.
 
 ## Credits
+
+### Original Game
+- **[Aditya Ravishankar](http://www.adityaravishankar.com/)** - Game development
+- Based on techniques from [Pro HTML5 Games](http://www.adityaravishankar.com/pro-html5-games/)
+
 ### Artwork
-1. "Hard Vaccum" Artwork and Game Sprites by [Daniel Cook](http://www.lostgarden.com/)
-2. Artwork from [Open Game Art](opengameart.org)
-	* [Thief Portrait by Zeldyn](http://opengameart.org/content/thief-portrait-female)
-	* [Jacob Portrait by Gaspard](http://opengameart.org/content/four-post-apocalyptic-portraits)
-	* [Priest Portrait by Zeldyn](http://opengameart.org/content/priest-portrait-female)
+- **[Daniel Cook](http://www.lostgarden.com/)** - "Hard Vacuum" sprites (CC-BY 3.0)
+- **[Open Game Art](https://opengameart.org)** - Character portraits
+  - Thief Portrait by Zeldyn
+  - Jacob Portrait by Gaspard
+  - Priest Portrait by Zeldyn
 
 ### Sounds
-All sounds from [Free Sound](http://www.freesound.org/)
+- All sounds from [Free Sound](http://www.freesound.org/)
+
+---
+
+*Built for Vector*

@@ -1,0 +1,10 @@
+# Build output
+*.xdc
+
+# macOS
+.DS_Store
+
+# IDEs
+.idea/
+.vscode/
+*.code-workspace
