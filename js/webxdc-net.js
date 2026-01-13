@@ -90,14 +90,29 @@ var webxdcNet = {
     handleMessage: function(data) {
         var message;
 
-        // Parse message (support both string and binary)
-        if (typeof data === 'string') {
-            message = JSON.parse(data);
-        } else if (data instanceof ArrayBuffer || data instanceof Uint8Array) {
-            var str = new TextDecoder().decode(data);
-            message = JSON.parse(str);
-        } else {
-            message = data;
+        try {
+            // Parse message (support both string and binary)
+            if (typeof data === 'string') {
+                if (!data || data.length === 0) return;
+                message = JSON.parse(data);
+            } else if (data instanceof ArrayBuffer) {
+                var str = new TextDecoder().decode(data);
+                if (!str || str.length === 0) return;
+                message = JSON.parse(str);
+            } else if (data instanceof Uint8Array) {
+                var str = new TextDecoder().decode(data);
+                if (!str || str.length === 0) return;
+                message = JSON.parse(str);
+            } else if (typeof data === 'object' && data !== null) {
+                // Already an object
+                message = data;
+            } else {
+                console.warn('Unknown message format:', typeof data);
+                return;
+            }
+        } catch (e) {
+            console.error('Failed to parse message:', e, data);
+            return;
         }
 
         // Ignore our own messages
