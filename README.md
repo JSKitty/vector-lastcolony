@@ -9,10 +9,21 @@ Last Colony is an RTS game with a single player campaign mode, created entirely 
 ## Features
 
 - **Campaign Mode** - Story-driven missions with scripted events
+- **Multiplayer** - 2-player battles via WebXDC Realtime
 - **Base Building** - Construct buildings and defenses
 - **Unit Control** - Vehicles, aircraft, and harvesters
 - **Resource Economy** - Harvest and manage resources
 - **Pathfinding AI** - Intelligent unit movement
+
+## Multiplayer
+
+Share the app in a chat with another player. The first player to open becomes the host (determined by boot timestamp). Both players battle head-to-head with blue vs green teams.
+
+**How it works:**
+- Uses WebXDC Realtime Channels for peer-to-peer communication
+- Lockstep simulation - both clients execute same commands deterministically
+- Host runs the game tick loop, guest follows
+- Press Enter to chat during gameplay
 
 ## Controls
 

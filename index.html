@@ -26,6 +26,7 @@
 
 		<script src="js/sounds.js" type="text/javascript" charset="utf-8"></script>
 
+		<script src="js/webxdc-net.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/multiplayer.js" type="text/javascript" charset="utf-8"></script>
 
 		<link rel="stylesheet" href="styles.css" type="text/css" media="screen" charset="utf-8">
@@ -34,7 +35,7 @@
 	    <div id="gamecontainer">
 	        <div id="gamestartscreen" class="gamelayer">
 	            <span id="singleplayer" onclick = "singleplayer.start();">Campaign</span>
-	            <span id="multiplayer" onclick = "game.showMessageBox('Multiplayer requires a server and is not available in WebXDC.');">Multiplayer</span>
+	            <span id="multiplayer" onclick = "multiplayer.start();">Multiplayer</span>
 	        </div>
 	        <div id="missionscreen" class="gamelayer">
 	            <input type="button" id="entermission" onclick = "singleplayer.play();">
