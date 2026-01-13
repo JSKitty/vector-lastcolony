@@ -3,8 +3,25 @@ $(window).load(function() {
 });
 
 var game = {
+	// Base dimensions
+	baseWidth: 640,
+	baseHeight: 480,
+
+	// Scale the game to fit screen
+	scaleToFit: function() {
+		var container = document.getElementById('gamecontainer');
+		var scaleX = window.innerWidth / game.baseWidth;
+		var scaleY = window.innerHeight / game.baseHeight;
+		var scale = Math.min(scaleX, scaleY);
+		container.style.transform = 'scale(' + scale + ')';
+	},
+
     // Start preloading assets
 	init:function(){
+		// Scale to fit and listen for resize
+		game.scaleToFit();
+		window.addEventListener('resize', game.scaleToFit);
+
 		loader.init();
 		mouse.init();
 		sidebar.init();

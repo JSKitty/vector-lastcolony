@@ -90,24 +90,11 @@ var webxdcNet = {
     handleMessage: function(data) {
         if (!data) return;
 
-        var message;
-        try {
-            // String or binary -> parse JSON, object -> use directly
-            if (typeof data === 'string') {
-                message = JSON.parse(data);
-            } else if (data.buffer || data instanceof ArrayBuffer) {
-                message = JSON.parse(new TextDecoder().decode(data));
-            } else {
-                message = data;
-            }
-        } catch (e) {
-            return;
-        }
+        // Parse if needed, otherwise use as-is
+        var message = (typeof data === 'object' && !data.buffer) ? data : JSON.parse(typeof data === 'string' ? data : new TextDecoder().decode(data));
 
-        // Ignore our own messages
         if (message.addr === this.selfAddr) return;
 
-        // Route message
         if (message.type === 'presence') {
             this.handlePresence(message);
         } else if (this.onMessage) {
